@@ -107,3 +107,7 @@
 ◼︎ サービス追加
 
 - 毎日 365 日記念日アニバーサリーポスト
+
+### 画面遷移図
+
+https://www.figma.com/file/XFz1XgaqEKZPyhpEudPB3J/%E3%82%A2%E3%83%8B%E3%83%90%E3%83%9D%E3%82%B9%E3%83%88%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=Xy6WHbr5u3KmHtL2-1
