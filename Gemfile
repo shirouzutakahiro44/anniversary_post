@@ -46,11 +46,14 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   # Use mysql as the database for Active Record
   gem "mysql2", "~> 0.5"
+  gem "rspec-rails", '~> 4.0.0.beta2' 
+  gem 'rails-controller-testing'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'spring-commands-rspec' 
 
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -64,9 +67,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'webdrivers' 
 end
 
 group :production do
   gem 'pg'
   gem 'dotenv-rails'
 end 
+
+gem 'devise'
