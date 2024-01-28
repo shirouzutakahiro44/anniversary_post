@@ -23,7 +23,6 @@ module AnniversaryPost
         view_specs: false,
         helper_specs: false,
         routing_specs: false
-      end
     end
 
     # Configuration for the application, engines, and railties goes here.
