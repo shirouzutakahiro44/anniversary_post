@@ -17,7 +17,7 @@ module AnniversaryPost
     config.autoload_lib(ignore: %w(assets tasks))
 
     config.generators do |g|
-      g.assets false          # CSS, JavaScriptファイルは生成しない
+      g.assets false # CSS, JavaScriptファイルは生成しない
       g.test_framework :rspec, # testファイルは生成しない
         controller_specs: false,
         view_specs: false,
