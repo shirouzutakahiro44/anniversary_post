@@ -1,3 +1,14 @@
 <% provide(:title, "利用規約") %>
-<h1>StaticPages#terms</h1>
-<p>Find me in app/views/static_pages/terms.html.erb</p>
+<html>
+  <head>
+    <title><%= yield(:title) %> | AnniversaryPost </title>
+  </head>
+  <body>
+    <h1><%= yield(:title) %></h1>
+    <center>
+      <h2>このアプリは、お子様の大切な1日をより特別な1日にしてくれる</h2>
+      <h3>またはあなた自身の365日を特別な1日にしてくれる</h3>
+      <h4>写真保管・整理・共有サービスです</h4>
+    </center>
+  </body>
+</html>
