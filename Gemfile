@@ -2,8 +2,6 @@ source "https://rubygems.org"
 
 ruby "3.2.0"
 
-gem 'bootstrap-sass'
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
@@ -80,3 +78,6 @@ group :production do
 end
 
 gem 'devise'
+
+gem 'sassc', '~> 2.0'
+
