@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+  <ul class="nav-item dropdown mb-2 mb-lg-0">
+    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t('nav_hello') %>
+      <% if params[:locale] == 'ja' %>
+        <%= current_user.LastName %><%= t('nav_honorific') %>
+      <% else %>
+        <%= current_user.username %>
+      <% end %>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to users_show_path, class: 'dropdown-item' do %>
+          <i class="fa-solid fa-tachograph-digital"></i> プロフィール
+        <% end %>
+      </li>
+      <li>
+        <%= link_to root_path, class: 'dropdown-item' do %>
+          <i class="fa-solid fa-envelope"></i> Menu
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span id="logout_link"><%= t('devise.shared.links.sign_out') %></span>
+        <% end %>
+      </li>
+    </ul>
+  </ul>
+<% else %>
+  <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'btn btn-outline-primary' %>
+  <ul class="nav-item dropdown mb-2 mb-lg-0">
+    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa-solid fa-user-large fa-lg"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li>
+        <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+          <i class="fas fa-sign-in-alt ml-1"></i><span id="login_link"><%= t('devise.shared.links.sign_in') %></span>
+        <% end %>
+      </li>
+    </ul>
+  </ul>
+<% end %>
