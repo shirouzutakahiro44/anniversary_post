@@ -2,7 +2,9 @@
  <div class="container">
    <%= link_to(image_tag("header_logo.jpg", :alt => "",class: "w-25"), root_url, id: 'logo') %>
    <nav>
-     <ul class="nav navbar-nav navbar-right">
+     <ul class="navbar navbar-expand-lg bg-body-tertiary">
+       <li><%= link_to 'ユーザー登録(無料)',  new_user_registration_path %></li>
+       <li><%= link_to 'サインアウト', destroy_user_session_path, method: :delete %></li>
        <li><%= link_to 'アニバポストとは？', about_path %></li>
        <li><%= link_to '利用規約', use_of_terms_path %></li>
      </ul>

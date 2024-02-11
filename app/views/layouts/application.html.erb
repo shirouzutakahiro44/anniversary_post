@@ -4,19 +4,33 @@
     <title><%= full_title(page_title: yield(:title)) %></title>
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
+    <%= javascript_importmap_tags %>
   </head>
   <body>
-    <div id= "page">
-      <%= render 'layouts/header' %>
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
-      <%= yield %>
-    </div>
+  <div id="wrapper"> <%# --- BEGIN of wrapper --- %>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+  
+    <%= yield %>
+  
+    <%# ------ Toastr ----- %>
+    <% if flash.any? %>
+      <script type="text/javascript">
+          <% flash.each do |key, value| %>
+          <% key = "success" if key == "notice" %>
+          <% key = "error" if key == "alert" %>
+          <% key = "error" if key == "warn" %>
+          toastr['<%= key %>']('<%= value %>');
+          <% end %>
+      </script>
+    <% end %>
+    <%# ------ Toastr ----- %>
+  
+  </div> <%# --- END of wrapper --- %>
+  </body>
     <%= render 'layouts/footer' %>
   </body>
 </html>
-
-
 
  
