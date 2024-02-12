@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :phone_number, :full_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile])
   end
+
+  def after_sign_up_path_for(resource)
+    user_show_path(resource) # サインアップ後にユーザーのプロフィールページにリダイレクト
+  end
 end

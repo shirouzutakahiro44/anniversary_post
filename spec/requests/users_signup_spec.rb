@@ -1,7 +1,7 @@
 require "rails_helper"
 RSpec.describe "ユーザー登録", type: :request do
   before do
-    get new_user_registration
+    get new_user_registration_path
   end
 
   it "正常なレスポンスを返すこと" do
@@ -11,19 +11,19 @@ RSpec.describe "ユーザー登録", type: :request do
 
   it "有効なユーザーで登録" do
     expect {
-      post users_path, params: { user: { name: "Example User",
+      post user_registration_path, params: { user: { username: "Example User",
                                          email: "user@example.com",
                                          password: "password",
                                          password_confirmation: "password" } }
     }.to change(User, :count).by(1)
     redirect_to @user
     follow_redirect!
-    expect(response).to render_template('users/show')
+    expect(response).to render_template('static_pages/home')
   end
 
   it "無効なユーザーで登録" do
     expect {
-      post users_path, params: { user: { name: "",
+      post user_registration_path, params: { user: { username: "",
                                          email: "user@example.com",
                                          password: "password",
                                          password_confirmation: "pass" } }

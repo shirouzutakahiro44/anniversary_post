@@ -12,7 +12,7 @@ RSpec.describe "StaticPages", type: :system do
       end
 
       it "正しいタイトルが表示されることを確認" do
-        expect(page).to have_title full_title
+        expect(page).to have_title('HOME - アニバポスト')
       end
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe "StaticPages", type: :system do
     end
 
     it '正しいタイトルが表示されることを確認' do
-      expect(page).to have_title full_title('アニバポストについて')
+      expect(page).to have_title('アニバポストについて - アニバポスト')
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe "StaticPages", type: :system do
     end
 
     it '正しいタイトルが表示されることを確認' do
-      expect(page).to have_title full_title('利用規約')
+      expect(page).to have_title('利用規約 - アニバポスト')
     end
   end
 end

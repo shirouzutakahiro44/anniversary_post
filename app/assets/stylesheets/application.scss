@@ -2,11 +2,4 @@
 @import "toastr";
 @import 'font-awesome';
 @import 'pages';
-
-.login-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh; /* または min-height を使用して、コンテナの高さを設定 */
-  }
+@import "custom";
