@@ -1,7 +1,8 @@
 class ChildPostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
+    @child_posts = ChildPost.desc_order
   end
 
   def show
@@ -35,7 +36,7 @@ class ChildPostsController < ApplicationController
 
   private
 
-    def child_post_params
-      params.require(:child_post).permit(:content, :image, :child_anniversary_id)
-    end
+  def child_post_params
+    params.require(:child_post).permit(:content, :image, :child_anniversary_id)
+  end
 end

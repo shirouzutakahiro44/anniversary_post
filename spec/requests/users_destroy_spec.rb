@@ -4,14 +4,14 @@ RSpec.describe "ユーザーの削除", type: :request do
   let!(:admin_user) { create(:user, :admin) }
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:child_post){ create(:child_post, user: user)}
+  let!(:child_post) { create(:child_post, user: user) }
 
   context "管理者ユーザーの場合" do
     it "ユーザーを削除後、ユーザー一覧ページにリダイレクト" do
       sign_in admin_user
-      expect {
+      expect do
         delete user_path(user)
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
       redirect_to users_url
       follow_redirect!
       expect(response).to render_template('users/index')
@@ -21,17 +21,17 @@ RSpec.describe "ユーザーの削除", type: :request do
   context "管理者以外のユーザーの場合" do
     it "自分のアカウントを削除できること" do
       sign_in user
-      expect {
+      expect do
         delete user_path(user)
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
       redirect_to root_url
     end
 
     it "自分以外のユーザーを削除しようとすると、トップページへリダイレクトすること" do
       sign_in user
-      expect {
+      expect do
         delete user_path(other_user)
-      }.not_to change(User, :count)
+      end.not_to change(User, :count)
       expect(response).to have_http_status "302"
       expect(response).to redirect_to root_path
     end
@@ -39,9 +39,9 @@ RSpec.describe "ユーザーの削除", type: :request do
 
   context "ログインしていないユーザーの場合" do
     it "ログインページへリダイレクトすること" do
-      expect {
+      expect do
         delete user_path(user)
-      }.not_to change(User, :count)
+      end.not_to change(User, :count)
       expect(response).to have_http_status "302"
       expect(response).to new_user_session_path
     end
@@ -50,18 +50,18 @@ RSpec.describe "ユーザーの削除", type: :request do
   context "記念日投稿が紐づくユーザーを削除した場合" do
     it "ユーザーと同時に紐づく料理も削除される" do
       sign_in user
-      expect{
+      expect  do
         delete user_path(user)
-      }.to change(ChildPost, :count).by(-1)
+      end.to change(ChildPost, :count).by(-1)
     end
   end
 
   context "記念日が紐づくユーザーを削除した場合" do
     it "ユーザーと同時に紐づく料理も削除される" do
       sign_in user
-      expect{
+      expect  do
         delete user_path(user)
-      }.to change(ChildAnniversary, :count).by(-1)
+      end.to change(ChildAnniversary, :count).by(-1)
     end
   end
 end

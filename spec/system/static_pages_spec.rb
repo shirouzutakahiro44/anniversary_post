@@ -15,10 +15,10 @@ RSpec.describe "StaticPages", type: :system do
         expect(page).to have_title('HOME - アニバポスト')
       end
 
-      context "こども記念日フィード" ,js: true do
-        let!(:user){ create(:user) }
-        let!(:child_post){ create(:child_post) }
-        
+      context "こども記念日フィード", js: true do
+        let!(:user) { create(:user) }
+        let!(:child_post) { create(:child_post) }
+
         it "こども記念日写真のページネーションが表示されること" do
           sign_in(user)
           create_list(:child_post, 6, user: user)

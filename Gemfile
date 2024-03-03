@@ -51,7 +51,7 @@ group :development, :test do
   gem "rspec-rails", '~> 4.0.0.beta2'
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
-  gem "factory_bot_rails", "~> 4.10.0" 
+  gem "factory_bot_rails", "~> 4.10.0"
 end
 
 group :development do
@@ -90,6 +90,6 @@ gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 gem "sassc-rails"
 gem 'faker'
-gem 'will_paginate',           '4.0.0'  # 追記
+gem 'will_paginate', '4.0.0'  # 追記
 gem 'will_paginate-bootstrap-style'
 gem 'pry'

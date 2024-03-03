@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ChildPost, type: :model do
-  let!(:child_post_yesterday){ create(:child_post, :yesterday) }
-  let!(:child_post_one_week_ago){ create(:child_post, :one_week_ago) }
-  let!(:child_post_one_month_ago){ create(:child_post, :one_month_ago) }
-  let!(:child_post){ create(:child_post) }
+  let!(:child_post_yesterday) { create(:child_post, :yesterday) }
+  let!(:child_post_one_week_ago) { create(:child_post, :one_week_ago) }
+  let!(:child_post_one_month_ago) { create(:child_post, :one_month_ago) }
+  let!(:child_post) { create(:child_post) }
 
   context "バリデーション" do
     it "有効な状態であること" do
@@ -26,7 +26,7 @@ RSpec.describe ChildPost, type: :model do
 
   context "並び順" do
     it "最も最近の投稿が最初の投稿になっていること" do
-      expect(:child_post).to eq  ChildPost.first
+      expect(:child_post).to eq ChildPost.first
     end
   end
   pending "add some examples to (or delete) #{__FILE__}"

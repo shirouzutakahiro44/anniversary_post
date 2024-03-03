@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ChildAnniversary, type: :model do
-  let!(:child_anniversary_yesterday){ create(:child_anniversary, :anniversary_yesterday) }
-  let!(:child_anniversary_one_week_ago){ create(:child_anniversary, :anniversary_one_week_ago) }
-  let!(:child_anniversary_one_month_ago){ create(:child_anniversary, :anniversary_one_month_ago) }
-  let!(:child_anniversary){ create(:child_anniversary) }
+  let!(:child_anniversary_yesterday) { create(:child_anniversary, :anniversary_yesterday) }
+  let!(:child_anniversary_one_week_ago) { create(:child_anniversary, :anniversary_one_week_ago) }
+  let!(:child_anniversary_one_month_ago) { create(:child_anniversary, :anniversary_one_month_ago) }
+  let!(:child_anniversary) { create(:child_anniversary) }
 
   context "バリデーション" do
     it "有効な状態であること" do
@@ -32,7 +32,7 @@ RSpec.describe ChildAnniversary, type: :model do
 
   context "並び順" do
     it "最も最近の投稿が最初の投稿になっていること" do
-      expect(:child_anniversary).to eq  ChildAnniversary.first
+      expect(:child_anniversary).to eq ChildAnniversary.first
     end
   end
   pending "add some examples to (or delete) #{__FILE__}"

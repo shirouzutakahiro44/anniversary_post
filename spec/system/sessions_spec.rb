@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :system do
-  let!(:user){ create(:user) }
+  let!(:user) { create(:user) }
 
   before do
     visit new_user_session_path

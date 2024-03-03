@@ -1,9 +1,9 @@
 class ChildAnniversariesController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
-  
+
   def index
-    @child_anniversaries = current_user.child_anniversaries.paginate(page: params[:page])
+    @child_anniversaries = current_user.child_anniversaries.desc_order.paginate(page: params[:page])
   end
 
   def show
@@ -52,7 +52,7 @@ class ChildAnniversariesController < ApplicationController
 
   private
 
-  def child_anniversary_params  
+  def child_anniversary_params
     params.require(:child_anniversary).permit(:name, :date, :description)
   end
 
