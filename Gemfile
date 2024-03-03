@@ -92,3 +92,4 @@ gem "sassc-rails"
 gem 'faker'
 gem 'will_paginate',           '4.0.0'  # 追記
 gem 'will_paginate-bootstrap-style'
+gem 'pry'

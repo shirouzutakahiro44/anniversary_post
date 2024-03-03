@@ -1,0 +1,29 @@
+<% provide(:title, "記念日を編集") %>
+<div class="card  pt-5 col-lg-4 mx-auto">
+  <%= form_with model: @child_anniversary, local: true do |form| %>
+    <% if @child_anniversary.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @child_anniversary.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :name, "記念日の名前", class: 'd-block text-center' %>
+      <%= form.text_field :name, class: 'form-control mx-auto', style: 'width: 80%;' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :description, "記念日の内容", class: 'd-block text-center' %>
+      <%= form.text_area :description, class: 'form-control mx-auto', style: 'width: 80%;' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :date, "記念日の日付", class: 'd-block text-center' %>
+      <%= form.date_field :date, class: 'form-control mx-auto', style: 'width: 80%;' %>
+    </div>
+    <%= form.submit "保存", class: 'btn btn-primary d-block mx-auto' %>
+  <% end %>
+  <%= link_to "記念日を削除する", child_anniversary_path(@child_anniversary), method: :delete, class: 'd-block mx-auto',
+                                                                          data: { confirm: "本当にこの記念日を削除してよろしいでしょうか？"} %>
+</div>

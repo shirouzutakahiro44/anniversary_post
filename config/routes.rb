@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :child_anniversaries do
+    resources :child_posts 
+  end
+  
   get 'users/show'
   devise_for :users
   root 'static_pages#home'

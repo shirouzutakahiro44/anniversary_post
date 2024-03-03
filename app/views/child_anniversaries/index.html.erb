@@ -1,0 +1,8 @@
+<% provide(:title, '記念日一覧') %>
+<div class="container">
+  <h1>記念日一覧</h1>
+  <ul class="users">
+    <%= render @child_anniversaries %>
+  </ul>
+  <%= will_paginate @child_anniversaries %>
+</div>

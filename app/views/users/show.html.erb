@@ -19,4 +19,16 @@
       <% end %>
     </div>
   </div>
+
+  <div class="row">
+  <div class="col-md-9">
+    <% if @user.child_posts.any? %>
+      <h3>こども記念日 (<%= @user.child_posts.count %>)</h3>
+      <ol class="child_posts">
+        <%= render @child_posts %>
+      </ol>
+      <%= will_paginate @child_posts %>
+    <% end %>
+  </div>
+</div>
 </div>

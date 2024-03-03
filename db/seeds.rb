@@ -24,3 +24,27 @@ User.create!(username:  "白水 貴太",
               password:              password,
               password_confirmation: password)
 end
+
+# デフォルトの記念日データ
+default_anniversaries = [
+  { name: 'ニューボーン', date: Date.new(2020, 1, 1), description: '生後1ヶ月を祝う' },
+  { name: 'お宮参り', date: Date.new(2020, 3, 3), description: '生後1ヶ月の健やかな成長を祈願する' },
+  { name: '初節句', date: Date.new(2020, 5, 5), description: 'こどもの日、健やかな成長を願う' },
+  { name: '七五三', date: Date.new(2020, 11, 15), description: '3歳と5歳と7歳の子供の成長を祝う' },
+  { name: '入学式', date: Date.new(2021, 4, 6), description: '新しい学校生活のスタートを祝う' },
+  # その他必要な記念日を追加
+]
+
+User.find_each do |user|
+  default_anniversaries.each do |anniversary|
+    user.child_anniversaries.find_or_create_by!(anniversary)
+  end
+end
+
+10.times do |n|
+  ChildPost.create!(
+    content: "七五三の素敵なワンシーン #{n}",
+    user_id: 1,
+    child_anniversary_id: ChildAnniversary.pluck(:id).sample # ChildAnniversaryのIDの中からランダムに選ぶ
+  )
+end
