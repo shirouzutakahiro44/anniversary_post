@@ -1,0 +1,6 @@
+<li id="child_post-<%= child_post.id %>">
+  <%= link_to gravatar_for(child_post.user, size: 50), child_post.user %>
+  <span class="content"><%= child_post.content %></span><br>
+    <%= time_ago_in_words(child_post.created_at) %>前に投稿
+  </span>
+</li>

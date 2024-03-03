@@ -1,0 +1,15 @@
+<li>
+  <%= gravatar_for child_anniversary.user, size: 50 %>
+  <%= link_to child_anniversary.name, child_anniversary_path(child_anniversary) %>
+  <span class = 'content'><%= child_anniversary.description %></span> 
+  <span class = 'content'><%= child_anniversary.date %></span> 
+    |  <%= link_to 'アニバ', new_child_anniversary_child_post_path(child_anniversary) %>
+    <% if current_user.id == child_anniversary.user_id %>
+    |  <%= link_to '編集', edit_child_anniversary_path(child_anniversary) %>
+    |  <%= button_to "削除", child_anniversary_path(child_anniversary), 
+                          method: :delete,
+                          data: { confirm: "本当に削除しますか？"},
+                          class: 'btn btn-danger btn-sm',
+                          form_class: 'inline-form'  %>
+    <% end %>
+</li>

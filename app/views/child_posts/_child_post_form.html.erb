@@ -1,0 +1,13 @@
+<%= form_with model: [@child_anniversary, @child_post], local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class = 'form-group'>
+    <%= f.label :content %><span class="input-need">※必須</span>
+    <%= f.text_field :content, class: 'form-control', id: 'child_post_content', placeholder: "投稿内容" %>
+  </div>
+  
+  <div class = 'form-group'>
+    <%= f.label :image %><span class="input-need">※必須</span>
+    <%= f.file_field :image, class: 'form-control', id: 'child_post_content', placeholder: "画像" %>
+  </div>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

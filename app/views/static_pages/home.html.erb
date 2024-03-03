@@ -1,15 +1,31 @@
 <% provide(:title, "HOME") %>
 
-<!|DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title><%= yield(:title) %> | AnniversaryPost </title>
   </head>
-  <body>
-    <h1><%= yield(:title) %></h1>
-    <center>
-      <h1>アニバポストへようこそ</h1>
-      <h2>何気ない1日を大切な1日にしませんか？</h2>
-    </center>
-  </body>
+
+    <% if signed_in? %>
+      <div class="container">
+        <div class="row">
+          <ul class="users">
+            <h3>こども記念日 (<%= @feed_items.count %> )</h3>
+            <%= render 'shared/feed' %>
+          </ul>
+          <div class="col-md-3">
+            <p><%= link_to "記念日作成", new_child_anniversary_path, class: "btn btn-primary btn-lg btn-record" %></p>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <body>
+        <h1><%= yield(:title) %></h1>
+        <center>
+          <h3>アニバポストへようこそ</h3>
+          <h3>何気ない1日を大切な1日にしませんか？</h3>
+        </center>
+      </body>
+    <% end %>
 </html>
+

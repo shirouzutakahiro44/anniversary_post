@@ -8,6 +8,8 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      child_post: こども記念日投稿
+      child_anniversary: こども記念日
     attributes:
       user:
         id: ID
@@ -19,6 +21,15 @@ ja:
         Password_confirmation: パスワード(確認)
         created_at: 登録日時
         updated_at: 更新日時
+      child_post: # 以下を追加
+        id: ID
+        content: 投稿内容
+        user_id: 作成者のID
+      child_anniversary:
+        id: ID
+        name: 記念日
+        date: 日付
+        description: 記念日の内容
   date:
     abbr_day_names:
       - 日

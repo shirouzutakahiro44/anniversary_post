@@ -1,0 +1,18 @@
+<% provide(:title, "#{@child_anniversary.name}") %>
+<div class="container">
+  <div class="row">
+    <h2 class="child_anniversary-name"><%= @child_anniversary.name %></h2>
+    <div class="change-child_anniversary">
+      <% if current_user == @child_anniversary.user %>
+        <%= link_to "編集", edit_child_anniversary_path(@child_anniversary), class: 'edit-child_anniversary' %>
+        <%= link_to "削除", child_anniversary_path(@child_anniversary),method: :delete, class: 'delete-child_anniversary',
+                                                                           data: { confirm: "本当に削除しますか?" }%>
+      <% end %>
+    </div>
+    <h4><%= @child_anniversary.description %></h4>
+      <h5><%= @child_anniversary.date %></h5>
+    <% if @child_anniversary.child_posts.any? %>
+      <h5><%= @child_anniversary.child_posts.first.content %></h5>
+    <% end %>
+  </div>
+</div> 

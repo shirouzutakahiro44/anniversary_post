@@ -4,7 +4,7 @@ RSpec.describe "Sessions", type: :system do
   let!(:user){ create(:user) }
 
   before do
-    visit sign_in_path
+    visit new_user_session_path
   end
 
   describe "ログインページ" do
@@ -14,11 +14,11 @@ RSpec.describe "Sessions", type: :system do
       end
 
       it "正しいタイトルが表示されることを確認" do
-        expect(page).to have title full_title('ログイン')
+        expect(page).to have_title('ログイン - アニバポスト')
       end
 
       it "ヘッダーにログインページへのリンクがあることを確認" do
-        expect(page).to have_link 'ログイン', href: login_path
+        expect(page).to have_link 'ログイン', href: user_session_path
       end
 
       it "ログインフォームのラベルが正しく表示される" do
