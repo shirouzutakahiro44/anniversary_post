@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @child_posts = @user.child_posts.paginate(page: params[:page], per_page: 5)
+    @child_posts = @user.child_posts.desc_order.paginate(page: params[:page], per_page: 5)
   end
 
   def index

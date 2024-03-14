@@ -1,6 +1,16 @@
 <li id="child_post-<%= child_post.id %>">
-  <%= link_to gravatar_for(child_post.user, size: 50), child_post.user %>
+  <p><%= child_post.child_anniversary.name %></p>
+  <p><%= child_post.child_anniversary.date %></p>
   <span class="content"><%= child_post.content %></span><br>
+  <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
     <%= time_ago_in_words(child_post.created_at) %>前に投稿
   </span>
+  <% if current_user.id == child_post.user_id %>
+  |  <%= link_to '編集', edit_child_anniversary_child_post_path(child_post.child_anniversary, child_post) %>
+  |  <%= button_to "削除", child_anniversary_child_post_path(child_post.child_anniversary, child_post), 
+                        method: :delete,
+                        data: { confirm: "本当に削除しますか？"},
+                        class: 'btn btn-danger btn-sm',
+                        form_class: 'inline-form'  %>
+  <% end %>
 </li>

@@ -1,0 +1,14 @@
+<div class="form-group" data-controller="previews">
+    <%= form.label :image%><span class="input-need">※必須</span><br>
+    <%= form.file_field :image,
+    class: 'form-control', id: 'child_post_content',
+    direct_upload: true,
+    data: { previews_target: "input", action: "change->previews#preview" } %>
+
+    <% if child_post.image.attached? %>
+      <%= image_tag child_post.image, data: { previews_target: "preview" } %>
+    <% else %>
+      <%= image_tag "", data: { previews_target: "preview" } %>
+    <% end %>
+
+</div>

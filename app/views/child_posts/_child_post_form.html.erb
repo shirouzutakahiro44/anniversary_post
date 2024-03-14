@@ -4,10 +4,7 @@
     <%= f.label :content %><span class="input-need">※必須</span>
     <%= f.text_field :content, class: 'form-control', id: 'child_post_content', placeholder: "投稿内容" %>
   </div>
-  
-  <div class = 'form-group'>
-    <%= f.label :image %><span class="input-need">※必須</span>
-    <%= f.file_field :image, class: 'form-control', id: 'child_post_content', placeholder: "画像" %>
-  </div>
+
+  <%= render 'child_posts/image_preview', form: f, child_post: @child_post %>
   <%= f.submit nil, class: 'btn btn-primary' %>
 <% end %>
