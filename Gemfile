@@ -41,13 +41,13 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants
 # See: https://guides.rubyonrails.org/active_storage_overview.html#transforming-images
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i(mri windows)
   # Use mysql as the database for Active Record
-  gem "mysql2", "~> 0.5"
+  gem 'mysql2'
   gem "rspec-rails", '~> 4.0.0.beta2'
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'

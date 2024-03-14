@@ -1,4 +1,5 @@
 require 'capybara/rspec' # 追加
+require 'carrierwave/test/matchers' 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # 追加
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'

@@ -1,2 +1,11 @@
-<h1>ChildPosts#edit</h1>
-<p>Find me in app/views/child_posts/edit.html.erb</p>
+
+
+<% provide(:title, "こども記念日写真登録") %>
+<div class="container">
+  <h1>こども記念日写真登録</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'child_posts/child_post_form' %>
+    </div>
+  </div>
+</div>
