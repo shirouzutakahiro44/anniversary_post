@@ -48,3 +48,11 @@ end
     child_anniversary_id: ChildAnniversary.pluck(:id).sample # ChildAnniversaryのIDの中からランダムに選ぶ
   )
 end
+
+# リレーションシップ
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
