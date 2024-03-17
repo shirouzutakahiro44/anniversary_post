@@ -6,8 +6,8 @@ class ChildPostsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @child_posts = @user.child_posts.desc_order.includes(:anniversary_post).paginate(page: params[:page], per_page: 5)
+    @child_post = ChildPost.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

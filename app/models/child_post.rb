@@ -2,6 +2,7 @@ class ChildPost < ApplicationRecord
   belongs_to :user
   belongs_to :child_anniversary
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :image
   scope :desc_order, -> { order(created_at: :desc) }
   validates :user_id, presence: true
@@ -22,5 +23,9 @@ class ChildPost < ApplicationRecord
   def image_as_thumbnail
     return unless image.content_type.in?(%w[image/jpeg image/png])
     image.variant(resize_to_limit: [200, 100]).processed
+  end
+
+  def feed_comment(child_post_id)
+    Comment.where("child_post_id = ?", child_post_id)
   end
 end
