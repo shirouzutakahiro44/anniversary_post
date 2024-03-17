@@ -6,6 +6,7 @@
     <%= time_ago_in_words(child_post.created_at) %>前に投稿
   </span>
   <% if current_user.id == child_post.user_id %>
+  |  <%= link_to '詳細', child_anniversary_child_post_path(child_post.child_anniversary, child_post), class: 'btn btn-primary btn-sm' %>
   |  <%= link_to '編集', edit_child_anniversary_child_post_path(child_post.child_anniversary, child_post) %>
   |  <%= button_to "削除", child_anniversary_child_post_path(child_post.child_anniversary, child_post), 
                         method: :delete,

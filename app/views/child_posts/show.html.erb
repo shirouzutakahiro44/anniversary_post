@@ -1,2 +1,28 @@
-<h1>ChildPosts#show</h1>
-<p>Find me in app/views/child_posts/show.html.erb</p>
+<% provide(:title, "こども記念日詳細") %>
+<% @comments  = @child_post.feed_comment(@child_post.id) %>
+
+<div id="child_post-<%= @child_post.id %>">
+  <p><strong>名前:</strong> <%= @child_post.child_anniversary.name %></p>
+  <p><strong>日付:</strong> <%= @child_post.child_anniversary.date %></p>
+  <p><strong>内容:</strong> <span class="content"><%= @child_post.content %></span></p>
+  <% if @child_post.image.attached? %>
+    <%= image_tag(@child_post.image_as_thumbnail) %>
+  <% end %>
+  <p><%= time_ago_in_words(@child_post.created_at) %>前に投稿</p>
+  <div class="comment">
+    <%= render "comments/feed_comments" %>
+    <%= render "comments/new" %>
+  </div>
+
+  <% if current_user.id == @child_post.user_id %>
+    <%= link_to '編集', edit_child_anniversary_child_post_path(@child_post.child_anniversary, @child_post), class: 'btn btn-primary' %>
+    <%= button_to '削除', child_anniversary_child_post_path(@child_post.child_anniversary, @child_post), 
+                  method: :delete, 
+                  data: { confirm: "本当に削除しますか？" }, 
+                  class: 'btn btn-danger' %>
+  <% end %>
+
+  <%= link_to '一覧へ戻る', child_anniversaries_path, class: 'btn btn-secondary' %>
+</div>
+
+<%= render 'users/favorite_form', child_post: @child_post %>
