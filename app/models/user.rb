@@ -12,6 +12,7 @@ class User < ApplicationRecord
                                   foreign_key: "followed_id",
                                   dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :favorites, dependent: :destroy  
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -36,6 +37,22 @@ class User < ApplicationRecord
   def followed_by?(other_user)
     followers.include?(other_user)
   end
+
+    # こども記念日をお気に入りに登録する
+    def favorite(child_post)
+      Favorite.create!(user_id: id, child_post_id: child_post.id)
+    end
+  
+    # こども記念日をお気に入り解除する
+    def unfavorite(child_post)
+      Favorite.find_by(user_id: id, child_post_id: child_post.id).destroy
+    end
+  
+    # 現在のユーザーがお気に入り登録してたらtrueを返す
+    def favorite?(child_post)
+      !Favorite.find_by(user_id: id, child_post_id: child_post.id).nil?
+    end
+  
 
   def feed
     following_ids = "SELECT followed_id FROM relationships

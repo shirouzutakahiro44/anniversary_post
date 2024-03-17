@@ -1,0 +1,7 @@
+<div id="favorite-<%= child_post.id %>">
+  <% if current_user.present? && current_user.favorite?(child_post) %>
+    <%= render 'users/unfavorite', child_post: child_post %>
+  <% else %>
+    <%= render 'users/favorite', child_post: child_post %>
+  <% end %>
+</div>
