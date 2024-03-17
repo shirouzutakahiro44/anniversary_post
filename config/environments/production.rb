@@ -89,6 +89,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+  # Active StorageのURLオプションを設定
+  config.active_storage.routes_prefix = '/rails/active_storage'
+  Rails.application.routes.default_url_options = { host: 'localhost', port: 3000 }
+  ActiveStorage::Current.host = "http://localhost:3000"
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com

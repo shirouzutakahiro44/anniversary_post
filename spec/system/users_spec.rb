@@ -4,6 +4,8 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let(:admin_user){ create(:user, :admin) }
   let!(:other_user) { create(:user) } 
+  let!(:child_post) { create(:child_post, user: user) }
+  let!(:other_child_post) { create(:child_post, user: other_user) }  #
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -122,7 +124,76 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_button 'フォローする'
       end
     end
-  end
+
+    context "お気に入り登録/解除" do
+      before do
+        sign_in user
+      end
+
+      it "こども記念日のお気に入り登録/解除ができること" do
+        expect(user.favorite?(child_post)).to be_falsey
+        user.favorite(child_post)
+        expect(user.favorite?(child_post)).to be_truthy
+        user.unfavorite(child_post)
+        expect(user.favorite?(child_post)).to be_falsey
+      end
+
+      it "トップページからお気に入り登録/解除ができること", js: true do
+        visit root_path
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+      end
+
+      it "ユーザー個別ページからお気に入り登録/解除ができること", js: true do
+        visit user_path(user)
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+      end
+
+      it "記念日個別ページからお気に入り登録/解除ができること", js: true do
+        visit dish_path(child_post)
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{child_post.id}/create"
+      end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-dish"
+        user.favorite(child_post)
+        user.favorite(other_child_post)
+        visit favorites_path
+        expect(page).to have_css ".favorite-dish", count: 2
+        expect(page).to have_content child_anniversary.name
+        expect(page).to have_content child_post.content
+        expect(page).to have_content "投稿者 by #{user.username}"
+        expect(page).to have_link user.username, href: user_path(user)
+        expect(page).to have_content other_child_post.content
+        expect(page).to have_content "投稿者 by #{other_user.username}"
+        expect(page).to have_link other_user.username, href: user_path(other_user)
+        user.unfavorite(other_child_post)
+        visit favorites_path
+        expect(page).to have_css ".favorite-dish", count: 1
+        expect(page).to have_content child_anniversary.name
+      end
+    end
 
   describe "プロフィール編集ページ" do
     context "アカウント削除", js:true do

@@ -1,0 +1,17 @@
+<% child_post = ChildPost.find(favorite.child_post_id) %>
+<% user = child_post.user %>
+<% child_anniversary = child_post.child_anniversary %>
+<li id="favorite-<%= favorite.id %>">
+  <ol class="child_posts">
+    <div class="col-md-2">
+      <%= link_to image_tag(child_post.image_as_thumbnail), child_anniversary_child_post_path(child_anniversary, child_post), class: 'child_post-picture' %>
+    </div>
+    <div class="col-md-10">
+      <div class="child_post-details">
+        <p><%= link_to child_anniversary.name, child_anniversary_child_post_path(child_anniversary, child_post), class: 'child_post-picture' %></p>
+        <p><%= link_to child_post.content, child_anniversary_child_post_path(child_anniversary, child_post)%></p>
+        <p class="cook-user">撮影者 by <%= link_to user.username, user_path(user) %></p>
+      </div>
+    </div>
+  </ol>
+</li>
