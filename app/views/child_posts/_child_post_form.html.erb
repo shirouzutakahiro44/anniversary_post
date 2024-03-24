@@ -4,6 +4,11 @@
     <%= f.label :content %><span class="input-need">※必須</span>
     <%= f.text_field :content, class: 'form-control', id: 'child_post_content', placeholder: "投稿内容" %>
   </div>
+  <div class = 'form-group'>
+    <%= f.label :hashbody %><span class="input-need">※必須</span>
+    <%= f.text_area :hashbody, class: 'form-control', id: 'child_post_content', placeholder: "ハッシュタグ入力欄" %>
+  </div>
+
 
   <%= render 'child_posts/image_preview', form: f, child_post: @child_post %>
   <%= f.submit nil, class: 'btn btn-primary' %>

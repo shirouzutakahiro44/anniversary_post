@@ -5,6 +5,7 @@
   <p><strong>名前:</strong> <%= @child_post.child_anniversary.name %></p>
   <p><strong>日付:</strong> <%= @child_post.child_anniversary.date %></p>
   <p><strong>内容:</strong> <span class="content"><%= @child_post.content %></span></p>
+  <p><%= render_with_hashtags(@child_post.hashbody) %></p>
   <% if @child_post.image.attached? %>
     <%= image_tag(@child_post.image_as_thumbnail) %>
   <% end %>

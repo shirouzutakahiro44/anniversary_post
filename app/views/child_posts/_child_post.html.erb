@@ -2,6 +2,7 @@
   <p><%= child_post.child_anniversary.name %></p>
   <p><%= child_post.child_anniversary.date %></p>
   <span class="content"><%= child_post.content %></span><br>
+  <p><%= render_with_hashtags(child_post.hashbody) %></p><br>
   <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
     <%= time_ago_in_words(child_post.created_at) %>前に投稿
   </span>

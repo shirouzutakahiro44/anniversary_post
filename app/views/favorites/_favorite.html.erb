@@ -4,7 +4,7 @@
 <li id="favorite-<%= favorite.id %>">
   <ol class="child_posts">
     <div class="col-md-2">
-      <%= link_to image_tag(child_post.image_as_thumbnail), child_anniversary_child_post_path(child_anniversary, child_post), class: 'child_post-picture' %>
+      <%= link_to image_tag(child_post.image_as_thumbnail || 'default_image.png', class: 'child_post-picture'), child_anniversary_child_post_path(child_anniversary, child_post), class: 'child_post-picture' %>
     </div>
     <div class="col-md-10">
       <div class="child_post-details">

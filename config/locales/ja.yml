@@ -26,6 +26,7 @@ ja:
         id: ID
         content: 投稿内容
         user_id: 作成者のID
+        hashbody: ハッシュタグ
       child_anniversary:
         id: ID
         name: 記念日

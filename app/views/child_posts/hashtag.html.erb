@@ -1,0 +1,44 @@
+<%# ハッシュタグが存在するかどうかのチェック %>
+<% if params[:name].present? %>
+  <% if @hashtag %>
+    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="hashtag-post-box">
+        <h3 class="search-title">#<%= @hashtag.hashname %>: <%= @child_posts.count %> 件</h3>
+        <div class="flex-box">
+          <% @child_posts.each do |child_post| %>
+            <div class="post-image-index-post-box">
+              <p class="index-post-box-top">
+                <%= child_post.created_at.strftime("%Y/%m/%d") %>
+              </p>
+              <%= render 'comments/comment_count', child_post: child_post %>
+              <%= render 'favorites/favorite_count', child_post: child_post %>
+              <%= render 'child_post', child_post: child_post %>
+              <%# child_postパーシャル内で必要な情報を表示します %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="image-index-pagination" data-turbolinks="false">
+        <%= will_paginate @child_posts, class: "paginate" %>
+      </div>
+    </div>
+  <% else %>
+    <%# ハッシュタグが見つからない場合のメッセージや処理をここに書く %>
+    <p>指定されたハッシュタグは見つかりませんでした。</p>
+  <% end %>
+<% else %>
+  <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+    <div class="hashtag-name">
+      <%# 全ハッシュタグを表示 %>
+      <% @hashtags.sort_by { |_, posts| -posts.count }.each do |_, hashtags| %>
+        <% hashtags.each do |hashtag| %>
+          <p>
+            <%= link_to "##{hashtag.hashname} (#{hashtag.child_posts.count}) 件",
+                        hashtag_path(hashtag.hashname),
+                        data: { "turbolinks" => false } %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

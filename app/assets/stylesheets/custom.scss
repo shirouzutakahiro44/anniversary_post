@@ -243,3 +243,9 @@ a.like, a.unlike {
     border-top: 1px solid #e8e8e8 ;
   }
 }
+
+.child_post-picture {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* これにより、画像のアスペクト比が保持されつつ、指定した枠にフィットするようになります */
+}

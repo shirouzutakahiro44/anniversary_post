@@ -55,9 +55,20 @@ class ChildPostsController < ApplicationController
     end
   end
 
+  def hashtag
+    @user = current_user
+    if params[:name].present?
+      @hashtag = Hashtag.find_by(hashname: params[:name])
+      @child_posts = @hashtag.child_posts.paginate(page: params[:page], per_page: 20).order(created_at: :desc)
+      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.child_posts.count}
+    else
+      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.child_posts.count}
+    end
+  end
+
   private
 
   def child_post_params
-    params.require(:child_post).permit(:content, :child_anniversary_id, :image, images: [])
+    params.require(:child_post).permit(:content, :hashbody, :child_anniversary_id, :image, images: [], hashtag_ids: [])
   end
 end
