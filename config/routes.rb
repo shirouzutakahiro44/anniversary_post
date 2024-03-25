@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications, only: :index
   resources :child_anniversaries do
     resources :child_posts
   end

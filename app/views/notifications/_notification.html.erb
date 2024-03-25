@@ -1,0 +1,21 @@
+<li id="notification-<%= notification.id %>">
+  <div>
+    <% if notification.variety == 1 %>
+      <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
+      <p class="notification-message">あなたの記念日が<%= link_to notification.from_user.username, user_path(notification.from_user) %>さんにお気に入り登録されました。</p>
+    <% elsif notification.variety == 2 %>
+      <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
+      <p class="notification-message">あなたの記念日に<%= link_to notification.from_user.username, user_path(notification.from_user) %>さんがコメントしました。
+      「<%= notification.content %>」</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= image_tag (notification.child_post.image.variant(resize_to_fit: [100, 100])) if notification.child_post.image.attached? %>
+    </div>
+    <div class="col-md-7">
+      <p><%= notification.child_post.child_anniversary.name %></p>
+      <p><%= link_to notification.child_post.content, child_anniversary_child_post_path(notification.child_post.child_anniversary, notification.child_post) %></p>
+    </div>
+  </div>
+</li>

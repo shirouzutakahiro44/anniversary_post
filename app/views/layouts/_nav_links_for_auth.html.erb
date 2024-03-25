@@ -20,13 +20,19 @@
         <% end %>
       </li>
       <li>
-      <%= link_to users_path, class: 'dropdown-item' do %>
-        <i class="fas fa-user"></i> ユーザー一覧
-      <% end %>
-    </li>
+        <%= link_to users_path, class: 'dropdown-item' do %>
+          <i class="fas fa-user"></i> ユーザー一覧
+        <% end %>
+      </li>
       <li>
-        <%= link_to root_path, class: 'dropdown-item' do %>
-          <i class="fa-solid fa-envelope"></i> Menu
+        <% if current_user.notification %>
+          <%= link_to notifications_path, class: 'dropdown-item new_notification' do %>
+            <i class="fa-solid fa-envelope"></i> <span>通知</span>
+          <% end %>
+        <% else %>
+          <%= link_to notifications_path, class: 'dropdown-item no_notification' do %>
+            <i class="fa-solid fa-envelope"></i> <span>通知</span>
+          <% end %>
         <% end %>
       </li>
       <li>

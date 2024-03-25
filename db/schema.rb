@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_20_123244) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_24_024617) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -94,6 +94,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_123244) do
     t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
+  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "child_post_id"
+    t.integer "variety"
+    t.text "content"
+    t.integer "from_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -117,6 +128,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_123244) do
     t.string "name"
     t.text "profile"
     t.boolean "admin", default: false
+    t.boolean "notification", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -3,12 +3,9 @@
     <%= form.file_field :image,
     class: 'form-control', id: 'child_post_content',
     direct_upload: true,
-    data: { previews_target: "input", action: "change->previews#preview" } %>
+    data: { action: "change->previews#preview", previews_target: "input" } %>
 
-    <% if child_post.image.attached? %>
-      <%= image_tag child_post.image, data: { previews_target: "preview" } %>
-    <% else %>
-      <%= image_tag "", data: { previews_target: "preview" } %>
-    <% end %>
-
+    <div>
+      <img data-previews-target="preview" src="" alt="Image preview...">
+    </div>
 </div>

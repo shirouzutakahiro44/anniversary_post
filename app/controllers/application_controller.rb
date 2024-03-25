@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_active_storage_host
 
   protected
 
@@ -11,5 +12,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_up_path_for(resource)
     user_show_path(resource) # サインアップ後にユーザーのプロフィールページにリダイレクト
+  end
+
+  private
+
+  def set_active_storage_host
+    ActiveStorage::Current.url_options = { 
+      protocol: request.protocol, 
+      host: request.host, 
+      port: request.port 
+    }
   end
 end
