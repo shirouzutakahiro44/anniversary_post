@@ -1,25 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="previews"
 export default class extends Controller {
   static targets = ["input", "preview"]
 
-  connect() {
-    console.log("PreviewsController connected");
-  }
-
   preview() {
-    let input = this.inputTarget;
+    let input = this.inputTarget.files[0];
     let preview = this.previewTarget;
-    let file = input.files[0];
-    let reader = new FileReader();
 
-    reader.onloadend = function(){
-      preview.src = reader.result;
-    };
+    if (input) {
+      let reader = new FileReader();
 
-    if(file) {
-      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        preview.src = event.target.result;
+      };
+
+      reader.readAsDataURL(input);
     } else {
       preview.src = "";
     }

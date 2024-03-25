@@ -13,6 +13,7 @@ class User < ApplicationRecord
                                   dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :favorites, dependent: :destroy  
+  has_many :notifications, dependent: :destroy  
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -57,7 +58,7 @@ class User < ApplicationRecord
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
-    ChildPost.desc_order.where("user_id IN (#{following_ids})
-                    OR user_id = :user_id", user_id: id)
+    ChildPost.desc_order.includes(:user, :child_anniversary).where("user_id IN (#{following_ids})
+    OR user_id = :user_id", user_id: id)
   end
 end
