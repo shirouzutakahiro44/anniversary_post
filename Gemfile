@@ -93,3 +93,8 @@ gem 'faker'
 gem 'will_paginate', '4.0.0'  # 追記
 gem 'will_paginate-bootstrap-style'
 gem 'pry'
+
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'

@@ -13,10 +13,15 @@ class User < ApplicationRecord
                                   dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :favorites, dependent: :destroy  
-  has_many :notifications, dependent: :destroy  
+  has_many :notifications, dependent: :destroy
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[google_oauth2]
+  
+  validates :uid, uniqueness: { scope: :provider }
+       
   validates :email, length: { maximum: 255 }
   validates :profile, length: { maximum: 200 } # 追記
   validates :username, presence: true, length: { maximum: 50 }
@@ -60,5 +65,14 @@ class User < ApplicationRecord
                      WHERE follower_id = :user_id"
     ChildPost.desc_order.includes(:user, :child_anniversary).where("user_id IN (#{following_ids})
     OR user_id = :user_id", user_id: id)
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.password = Devise.friendly_token[0,20]
+      user.skip_confirmation!
+    end
   end
 end
