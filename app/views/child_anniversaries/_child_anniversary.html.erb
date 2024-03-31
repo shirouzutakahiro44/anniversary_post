@@ -3,7 +3,11 @@
   <%= link_to child_anniversary.name, child_anniversary_path(child_anniversary) %>
   <span class = 'content'><%= child_anniversary.description %></span> 
   <span class = 'content'><%= child_anniversary.date %></span> 
-    |  <%= link_to 'アニバ', new_child_anniversary_child_post_path(child_anniversary) %>
+    <% if child_anniversary.child_post.present? %>
+      | <%= link_to 'アニバ編集', edit_child_anniversary_child_post_path(child_anniversary, child_anniversary.child_post) %>
+    <% else %>
+      | <%= link_to 'アニバ新規投稿', new_child_anniversary_child_post_path(child_anniversary) %>
+    <% end %>
     <% if current_user.id == child_anniversary.user_id %>
     |  <%= link_to '編集', edit_child_anniversary_path(child_anniversary) %>
     |  <%= button_to "削除", child_anniversary_path(child_anniversary), 

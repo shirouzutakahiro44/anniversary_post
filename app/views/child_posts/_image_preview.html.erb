@@ -6,6 +6,10 @@
     data: { action: "change->previews#preview", previews_target: "input" } %>
 
     <div>
-      <img data-previews-target="preview" src="" alt="Image preview...">
+      <% if @child_post.image.attached? %>
+        <%= image_tag @child_post.image, data: { previews_target: "preview" } %>
+      <% else %>
+        <img data-previews_target="preview" src="" alt="Image preview...">
+      <% end %>
     </div>
 </div>
