@@ -1,6 +1,12 @@
 <% if @feed_items.any? %>
-  <ol class = "child_posts" >
-    <%= render @feed_items %>
-  </ol>
-  <%= will_paginate @feed_items %>
+  <div class="container">
+    <div class="row">
+      <% @feed_items.each do |feed_item| %>
+        <div class="col-md-4">
+          <%= render feed_item %>
+        </div>
+      <% end %>
+    </div>
+    <%= will_paginate @feed_items %>
+  </div>
 <% end %>
