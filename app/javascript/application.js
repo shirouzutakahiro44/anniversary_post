@@ -2,4 +2,6 @@
 //= require popper
 //= require bootstrap
 //= require toastr_rails
-//= require jquery_ujs
+//= require rails-ujs
+//= require main
+//= require plugins
