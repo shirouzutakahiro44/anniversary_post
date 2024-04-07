@@ -5,8 +5,12 @@
     </div>
   </div>
   <% if @favorites.present? %>
-    <ol class="favorites">
-      <%= render @favorites %>
-    </ol>
+    <div class="row">
+      <% @favorites.each do |favorite| %>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <%= render favorite %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

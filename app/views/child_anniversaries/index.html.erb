@@ -3,6 +3,7 @@
   <h1>記念日一覧</h1>
   <ul class="users">
     <%= render @child_anniversaries %>
+    <p><%= link_to "記念日作成", new_child_anniversary_path, class: "btn btn-primary btn-lg btn-record" %></p>
   </ul>
   <%= will_paginate @child_anniversaries %>
 </div>

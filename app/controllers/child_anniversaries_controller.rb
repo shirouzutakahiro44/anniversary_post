@@ -32,7 +32,7 @@ class ChildAnniversariesController < ApplicationController
     @child_anniversary = current_user.child_anniversaries.build(child_anniversary_params)
     if @child_anniversary.save
       flash[:success] = "記念日登録"
-      redirect_to child_anniversary_path(@child_anniversary)
+      redirect_to child_anniversaries_path
     else
       render 'new'
     end

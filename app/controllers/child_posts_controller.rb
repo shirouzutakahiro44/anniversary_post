@@ -36,7 +36,7 @@ class ChildPostsController < ApplicationController
     @child_post = @child_anniversary.build_child_post(child_post_params.merge(user: current_user))
     if @child_post.save
       flash[:success] = "登録が成功しました"
-      redirect_to child_anniversary_path(@child_anniversary)
+      redirect_to child_anniversary_child_posts_path
     else
       render 'child_posts/new'
     end

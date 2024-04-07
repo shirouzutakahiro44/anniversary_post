@@ -24,7 +24,7 @@ class ChildPost < ApplicationRecord
 
   def image_as_thumbnail
     return 'default_image.png' unless image.content_type.in?(%w[image/jpeg image/png])
-    image.variant(resize_to_limit: [200, 100]).processed
+    image.variant(resize_to_limit: [800, 460]).processed
   end
 
   def feed_comment(child_post_id)

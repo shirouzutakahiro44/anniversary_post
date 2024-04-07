@@ -1,22 +1,30 @@
 <%# ハッシュタグが存在するかどうかのチェック %>
 <% if params[:name].present? %>
-  <% if @hashtag %>
-    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
-      <div class="hashtag-post-box">
-        <h3 class="search-title">#<%= @hashtag.hashname %>: <%= @child_posts.count %> 件</h3>
-        <div class="flex-box">
-          <% @child_posts.each do |child_post| %>
+    <% if @hashtag %>
+    <div class="container">
+      <h3 class="search-title">#<%= @hashtag.hashname %>: <%= @child_posts.count %> 件</h3>
+      <div class="row">
+        <% @child_posts.each do |child_post| %>
+          <div class="col-sm-6 col-md-4 col-lg-4">
             <div class="post-image-index-post-box">
-              <p class="index-post-box-top">
-                <%= child_post.created_at.strftime("%Y/%m/%d") %>
-              </p>
-              <%= render 'comments/comment_count', child_post: child_post %>
-              <%= render 'favorites/favorite_count', child_post: child_post %>
-              <%= render 'child_post', child_post: child_post %>
-              <%# child_postパーシャル内で必要な情報を表示します %>
+              <%= link_to child_anniversary_child_post_path(child_post.child_anniversary, child_post) do %>
+                <div class="gallery-item">
+                  <div class="gallery-image">
+                    <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
+                  </div>
+                </div>
+              <% end %>
+              <div class="post-meta d-flex justify-content-start">
+                <p class="index-post-box-top">
+                  <%= child_post.created_at.strftime("%Y/%m/%d") %>
+                  <%= render 'comments/comment_count', child_post: child_post %>
+                  <%= render 'favorites/favorite_count', child_post: child_post %>
+                  <!-- ここに他の情報を表示するコードが入る -->
+                </p>
+              </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
       <div class="image-index-pagination" data-turbolinks="false">
         <%= will_paginate @child_posts, class: "paginate" %>

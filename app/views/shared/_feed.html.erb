@@ -1,12 +1,20 @@
 <% if @feed_items.any? %>
-  <div class="container">
-    <div class="row">
-      <% @feed_items.each do |feed_item| %>
-        <div class="col-md-4">
-          <%= render feed_item %>
-        </div>
-      <% end %>
+  <section class="module">
+    <div class="container">
+      <div class="row multi-columns-row">
+        <% @feed_items.each do |feed_item| %>
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <%= link_to child_anniversary_child_post_path(feed_item.child_anniversary, feed_item) do %>
+              <div class="gallery-item">
+                <div class="gallery-image">
+                  <%= render feed_item ,only_image: true %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <%= will_paginate @feed_items %>
-  </div>
+  </section>
+  <%= will_paginate @feed_items %>
 <% end %>

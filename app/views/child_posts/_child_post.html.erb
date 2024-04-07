@@ -1,20 +1,25 @@
-<li id="child_post-<%= child_post.id %>">
-  <p><%= child_post.user.username %></p>
-  <p><%= child_post.child_anniversary.name %></p>
-  <p><%= child_post.child_anniversary.date %></p>
-  <span class="content"><%= child_post.content %></span><br>
-  <p><%= render_with_hashtags(child_post.hashbody) %></p><br>
-  <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
-    <%= time_ago_in_words(child_post.created_at) %>前に投稿
-  </span>
-  <% if current_user.id == child_post.user_id %>
-  |  <%= link_to '詳細', child_anniversary_child_post_path(child_post.child_anniversary, child_post), class: 'btn btn-primary btn-sm' %>
-  |  <%= link_to '編集', edit_child_anniversary_child_post_path(child_post.child_anniversary, child_post) %>
-  |  <%= button_to "削除", child_anniversary_child_post_path(child_post.child_anniversary, child_post), 
-                        method: :delete,
-                        data: { confirm: "本当に削除しますか？"},
-                        class: 'btn btn-danger btn-sm',
-                        form_class: 'inline-form'  %>
+
+  <% if local_assigns[:only_image] %>
+      <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
+  <% else %>
+    <p><%= child_post.user.username %></p>
+    <p><%= child_post.child_anniversary.name %></p>
+    <p><%= child_post.child_anniversary.date %></p>
+    <span class="content"><%= child_post.content %></span><br>
+    <p><%= render_with_hashtags(child_post.hashbody) %></p><br>
+    <%= image_tag(child_post.image_as_thumbnail) if child_post.image.attached? %>
+      <%= time_ago_in_words(child_post.created_at) %>前に投稿
+    </span>
+    <% if current_user.id == child_post.user_id %>
+    <div>
+    |  <%= link_to '詳細', child_anniversary_child_post_path(child_post.child_anniversary, child_post), class: 'btn btn-primary btn-sm' %>
+    |  <%= link_to '編集', edit_child_anniversary_child_post_path(child_post.child_anniversary, child_post) %>
+    |  <%= button_to "削除", child_anniversary_child_post_path(child_post.child_anniversary, child_post), 
+                          method: :delete,
+                          data: { confirm: "本当に削除しますか？"},
+                          class: 'btn btn-danger btn-sm',
+                          form_class: 'inline-form'  %>
+    </div>
+    <% end %>
+    <%= render 'users/favorite_form', child_post: child_post %>
   <% end %>
-  <%= render 'users/favorite_form', child_post: child_post %>
-</li>
