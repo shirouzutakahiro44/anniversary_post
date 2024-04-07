@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <ul class="nav-item dropdown mb-2 mb-lg-0">
+  <ul class="nav navbar-nav navbar-right">
     <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= t('nav_hello') %>
       <% if params[:locale] == 'ja' %>
@@ -8,7 +8,7 @@
         <%= current_user.username %>
       <% end %>
     </a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu dropdown-menu-end">
       <li>
         <%= link_to user_path(current_user), class: 'dropdown-item' do %>
           <i class="fa-solid fa-tachograph-digital"></i> プロフィール
@@ -44,17 +44,19 @@
     </ul>
   </ul>
 <% else %>
-  <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'btn btn-outline-primary' %>
-  <ul class="nav-item dropdown mb-2 mb-lg-0">
-    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fa-solid fa-user-large fa-lg"></i>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end">
-      <li>
-        <%= link_to new_user_session_path, class: 'dropdown-item' do %>
-          <i class="fas fa-sign-in-alt ml-1"></i><span id="login_link"><%= t('devise.shared.links.sign_in') %></span>
-        <% end %>
-      </li>
+  <div class="ms-auto">
+    <ul class="nav navbar-nav navbar-right">
+      <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'btn btn-outline-primary' %>
+      <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-user-large fa-lg"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+            <i class="fas fa-sign-in-alt ml-1"></i><span id="login_link"><%= t('devise.shared.links.sign_in') %></span>
+          <% end %>
+        </li>
+      </ul>
     </ul>
-  </ul>
+  </div>
 <% end %>

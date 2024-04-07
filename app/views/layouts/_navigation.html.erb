@@ -1,36 +1,43 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <%= link_to 'Anniversary post', root_path, class: 'navbar-brand' %>
+<body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+  <main>
+    <div class="page-loader">
+      <div class="loader">Loading...</div>
+    </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top"  role="navigation">
+        <div class="container-fluid">
+          <%= link_to 'Anniversary post', root_path, class: 'navbar-brand' %>
 
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <div class="collapse navbar-collapse" id="Navber">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <%= link_to 'ANIPO', "#", class: "nav-link dropdown-toggle", role: "button", "data-bs-toggle" => "dropdown", "aria-expanded" => "false" %>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'ANIPO', about_path %></li>
-            <li><%= link_to '利用規約', use_of_terms_path %></li>
-            <li><%= link_to 'Item', '#' %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to 'Item', '#' %></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <%= link_to '記念日一覧', child_anniversaries_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">FAQ</a>
-        </li>
-      </ul>
+          <div class="collapse navbar-collapse" id="Navber">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <%= link_to 'ANIPO', "#", class: "nav-link dropdown-toggle", role: "button", "data-bs-toggle" => "dropdown", "aria-expanded" => "false" %>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'ANIPO', about_path %></li>
+                  <li><%= link_to '利用規約', use_of_terms_path %></li>
+                  <li><%= link_to 'Item', '#' %></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><%= link_to 'Item', '#' %></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <%= link_to '記念日一覧', child_anniversaries_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">FAQ</a>
+              </li>
+            </ul>
 
-      <%= render 'layouts/nav_links_for_auth' %>
+            <%= render 'layouts/nav_links_for_auth', class: 'ms-auto'  %>
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+  </main>    
+</body>
