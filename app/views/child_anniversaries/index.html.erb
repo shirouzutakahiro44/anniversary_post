@@ -1,9 +1,9 @@
 <% provide(:title, '記念日一覧') %>
 <div class="container">
-  <h1>記念日一覧</h1>
+  <h2 class="module-title font-alt">記念日一覧</h2>
   <ul class="users">
-    <%= render @child_anniversaries %>
     <p><%= link_to "記念日作成", new_child_anniversary_path, class: "btn btn-primary btn-lg btn-record" %></p>
+    <%= render @child_anniversaries %>
   </ul>
   <%= will_paginate @child_anniversaries %>
 </div>

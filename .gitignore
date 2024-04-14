@@ -38,3 +38,4 @@
 /vendor
 
 .env.production
+/config/credentials/production.key

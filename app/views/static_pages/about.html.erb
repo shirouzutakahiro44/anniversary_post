@@ -5,11 +5,186 @@
     <title><%= yield(:title) %> | AnniversaryPost </title>
   </head>
   <body>
-    <h1><%= yield(:title) %></h1>
+    <section class="module" id="news">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <h2 class="module-title font-alt"><%= yield(:title) %></h2>
+            <div class="module-subtitle font-serif">
+              このアプリは、お子様の大切な1日をより特別な1日にしてくれる
+              またはあなた自身の365日を特別な1日にしてくれる
+              写真保管・整理・共有サービスです</h4>
+            </div>
+          </div>
+        </div>
+        <div class="row multi-columns-row post-columns">
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("post-1.jpg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">記念日一覧</a></h2>
+                <div class="post-meta">
+                  記念日一覧をクリックすると、自分の大切な記念日一覧が表示されます
+                </div>
+              </div>
+              <div class="post-entry">
+                <p>「記念日一覧」と書かれたボタンを探します。
+                ボタンをクリックまたはタップします。
+                すると、記念日の全リストが画面に表示されます。ここから、特定の記念日を選択したり、新しい記念日を追加したりすることができます。</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("記念日作成.jpeg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">記念日作成</a></h2>
+                <div class="post-meta">記念日を作成するには、以下の手順に従ってください。
+                </div>
+              </div>
+              <div class="post-entry">
+                <p>
+                アプリのメイン画面上部から「記念日一覧」を探し、それをクリックします。
+                一覧の上部にある「新しい記念日を作成」というボタンを見つけ、クリックしてください。これにより記念日作成画面が開きます。
+                記念日の名称、日付、メモなどの情報を入力フォームに記入します。
+                全ての情報を入力した後、画面下部の「保存」ボタンをクリックして記念日を登録します。
+                </p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("記念日写真投稿.jpg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">記念日写真投稿</a></h2>
+                <div class="post-meta">大切な記念日に、写真を添える
+                </div>
+              </div>
+              <div class="post-entry">
+                <p>トップページに表示される記念日一覧から、写真を投稿したい記念日を見つけます。
+                記念日の右側にある「写真投稿」ボタンをクリックして、写真投稿ページに進みます。
+                写真投稿ページで「写真を選ぶ」ボタンをクリックし、投稿したい写真を選択します。
+                写真に短い17文字以内のコメントを付け加えることができます（例：「忘れられない素晴らしい日！」）。
+                「投稿」ボタンをクリックして、選択した写真とコメントを記念日に紐づけて投稿します。</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("記念日写真投稿詳細画面.jpg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">記念日写真投稿詳細</a></h2>
+                <div class="post-meta">特別な日を色とりどりの思い出と共に</div>
+              </div>
+              <div class="post-entry">
+                <p>写真に関連するキーワードを「#ハッシュタグ」欄に追加して、同じハッシュタグを使用する他のユーザーの投稿を簡単に探せるようにします。例えば、「#家族旅行」「#卒業式」などのタグをつけると、同じテーマを持つ他のユーザーの投稿を見つけやすくなります。
+                「写真を選ぶ」ボタンをクリックし、記念日の思い出となる写真を選択します。</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+        
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("ユーザー.jpeg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">フォロー機能、お気に入り機能</a></h2>
+                <div class="post-meta">フォローやお気に入りで、大切な瞬間を共有しよう</div>
+              </div>
+              <div class="post-entry">
+                <p>ユーザーをフォローする</br>
+                ユーザー一覧から、興味のあるユーザーを見つけます。ユーザー名の横にある「フォロー」ボタンをクリックすると、そのユーザーをフォローできます。これにより、そのユーザーの新しい投稿があなたのフィードに表示されるようになります。</br>
+                お気に入り機能を使用する</br>
+                投稿の中で気に入ったものがあれば、「お気に入り」ボタンをクリックして保存します。後で簡単に見返すことができ、お気に入りの投稿は「お気に入り一覧」からいつでもアクセス可能です。</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+        
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="post mb-20">
+              <div class="post-thumbnail"><a href="#"><%= image_tag("記念日写真トップ.jpeg", alt: "Blog-post Thumbnail") %></a></div>
+              <div class="post-header font-alt">
+                <h2 class="post-title"><a href="#">トップ画面で記念日振り返り</a></h2>
+                <div class="post-meta">大切な瞬間を一覧で</div>
+              </div>
+              <div class="post-entry">
+                <p>トップ画面へアクセス
+
+                アプリケーションのトップ画面にアクセスすると、投稿した記念日の写真や、フォローしているユーザーの最新の投稿が一覧で表示されます。
+                
+                投稿された写真はクリックすることで、その記念日の詳細ページへと進むことができます。
+                フォロー機能を利用していると、フォローしているユーザーの投稿も同じくトップ画面に表示されます。これにより、コミュニティ内で共有される素敵な瞬間を逃すことなく楽しむことができます。</p>
+              </div>
+              <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+          <div class="module-small bg-dark">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+                  <div class="callout-text font-alt">
+                    <h3 class="callout-title">Subscribe now</h3>
+                    <p>We will not spam your email.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                  <div class="callout-btn-box">
+                    <form id="subscription-form" role="form" method="post" action="php/subscribe.php">
+                      <div class="input-group">
+                        <input class="form-control" type="email" id="semail" name="semail" placeholder="Your Email" data-validation-required-message="Please enter your email address." required="required"/><span class="input-group-btn">
+                          <button class="btn btn-g btn-round" id="subscription-form-submit" type="submit">Submit</button></span>
+                      </div>
+                    </form>
+                    <div class="text-center" id="subscription-response"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section class="module" id="contact">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <h2 class="module-title font-alt">Get in touch</h2>
+                  <div class="module-subtitle font-serif"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <form id="contactForm" role="form" method="post" action="php/contact.php">
+                    <div class="form-group">
+                      <label class="sr-only" for="name">Name</label>
+                      <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="email">Email</label>
+                      <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" data-validation-required-message="Please enter your email address."/>
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="7" id="message" name="message" placeholder="Your Message*" required="required" data-validation-required-message="Please enter your message."></textarea>
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+                    </div>
+                  </form>
+                  <div class="ajax-response font-alt" id="contactFormResponse"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+    
     <center>
-      <h2>このアプリは、お子様の大切な1日をより特別な1日にしてくれる</h2>
-      <h3>またはあなた自身の365日を特別な1日にしてくれる</h3>
-      <h4>写真保管・整理・共有サービスです</h4>
-    </center>
+ 
+    </center１
   </body>
 </html>
