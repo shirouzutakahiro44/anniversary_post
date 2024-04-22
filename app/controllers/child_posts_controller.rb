@@ -45,10 +45,10 @@ class ChildPostsController < ApplicationController
   def destroy
     @child_anniversary = ChildAnniversary.find(params[:child_anniversary_id])
     @child_post = ChildPost.find(params[:id])
-    if current_user.admin? || current_user?(@child_post.user)
+    if current_user.admin? || current_user == @child_post.user
       @child_post.destroy
       flash[:success] = "記念日アニバを削除しました"
-      redirect_to  child_anniversary_child_posts_path
+      redirect_to  root_url
     else
       flash[:danger] = "他人の記念日アニバは削除できません"
       redirect_to root_url
