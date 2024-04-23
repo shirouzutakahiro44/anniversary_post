@@ -46,16 +46,7 @@
   <div class="ms-auto">
     <ul class="nav navbar-nav navbar-right">
       <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'btn btn-outline-primary' %>
-      <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa-solid fa-user-large fa-lg"></i>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li>
-          <%= link_to new_user_session_path, class: 'dropdown-item' do %>
-            <i class="fas fa-sign-in-alt ml-1"></i><span id="login_link"><%= t('devise.shared.links.sign_in') %></span>
-          <% end %>
-        </li>
-      </ul>
+      <%= link_to t('devise.shared.links.sign_in') ,new_user_session_path, class: 'btn btn-outline-primary' %>
     </ul>
   </div>
 <% end %>
