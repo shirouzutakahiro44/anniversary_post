@@ -9,6 +9,7 @@ class ChildPost < ApplicationRecord
   scope :desc_order, -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 17 }
+  has_many :notification, dependent: :destroy
 
   def image_content_type
     if image.attached? && !image.content_type.in?(%w[image/jpeg image/png image/gif])

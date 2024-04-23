@@ -11,11 +11,15 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <%= image_tag (notification.child_post.image.variant(resize_to_fit: [100, 100])) if notification.child_post.image.attached? %>
+      <%= image_tag (notification.child_post.image.variant(resize_to_fit: [100, 100])) if notification.child_post && notification.child_post.image.attached? %>
     </div>
     <div class="col-md-7">
-      <p><%= notification.child_post.child_anniversary.name %></p>
-      <p><%= link_to notification.child_post.content, child_anniversary_child_post_path(notification.child_post.child_anniversary, notification.child_post) %></p>
+      <% if notification.child_post && notification.child_post.child_anniversary %>
+        <p><%= notification.child_post.child_anniversary.name %></p>
+        <p><%= link_to notification.child_post.content, child_anniversary_child_post_path(notification.child_post.child_anniversary, notification.child_post) %></p>
+      <% else %>
+        <p>関連する投稿または記念日が見つかりません。</p>
+      <% end %>
     </div>
   </div>
 </li>
