@@ -17,7 +17,11 @@ class ChildPostsController < ApplicationController
 
   def edit
     @child_anniversary = ChildAnniversary.find(params[:child_anniversary_id])
-    @child_post = ChildPost.find(params[:id]) 
+    @child_post = ChildPost.find(params[:id])
+    unless @child_post.user == current_user
+      flash[:danger] = "他人の投稿は編集できません"
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+    end
   end
 
   def update
@@ -28,6 +32,7 @@ class ChildPostsController < ApplicationController
       redirect_to child_anniversary_child_posts_path
     else
       render 'edit'
+      redirect_to child_anniversary_child_posts_path
     end
   end
 

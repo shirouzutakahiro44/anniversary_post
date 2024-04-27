@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get :favorites, to: 'favorites#index'
   post   "favorites/:child_post_id/create"  => "favorites#create"
   delete "favorites/:child_post_id/destroy" => "favorites#destroy"
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :edit, :update, :destroy]
   get '/child_post/hashtag/:name' => 'child_posts#hashtag'
   get '/child_post/hashtag' => 'child_posts#hashtag'
   # Defines the root path route ("/")
