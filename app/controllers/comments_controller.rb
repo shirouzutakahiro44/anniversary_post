@@ -20,6 +20,28 @@ class CommentsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    @child_post = @comment.child_post
+    @child_anniversary = @child_post.child_anniversary
+    unless @comment.user_id == current_user.id
+      flash[:danger] = "他人のコメントは編集できません"
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @child_post = @comment.child_post
+    @child_anniversary = @child_post.child_anniversary
+    if @comment.update(comment_params)
+      flash[:success] = "コメントが更新されました"
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+    else
+      redirect_to child_anniversary_child_posts_path
+    end
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     @child_post = @comment.child_post
@@ -30,5 +52,11 @@ class CommentsController < ApplicationController
       flash[:success] = "コメントを削除しました"
     end
     redirect_to child_anniversary_child_post_path(@child_anniversary, @child_post)
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)  # :content は保存したいコメントの属性です
   end
 end
