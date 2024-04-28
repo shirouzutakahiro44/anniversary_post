@@ -26,7 +26,7 @@
 
     <% if @user.child_posts.any? %>
       <div class="conteiner">
-        <h3>こども記念日 (<%= @user.child_posts.count %>)</h3>
+        <h3>Anniversary (<%= @user.child_posts.count %>)</h3>
         <div class="row">
           <% @child_posts.each do |child_post| %>
             <div class="col-sm-6 col-md-4 col-lg-4">
