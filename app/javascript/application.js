@@ -15,3 +15,4 @@
 //= require lib/imagesloaded/imagesloaded.pkgd
 //= require magnific-popup/dist/jquery.magnific-popup
 //= require simple-text-rotator/jquery.simple-text-rotator.min
+//= require preview 
