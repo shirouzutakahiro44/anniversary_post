@@ -39,3 +39,4 @@
 
 .env.production
 /config/credentials/production.key
+/node_modules
