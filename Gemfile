@@ -96,5 +96,3 @@ gem 'pry'
 gem "aws-sdk-s3", require: false
 gem 'nokogiri'
 gem 'httparty'
-
-
