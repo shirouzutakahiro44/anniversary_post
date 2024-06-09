@@ -39,4 +39,11 @@
 
 .env.production
 /config/credentials/production.key
+
+/public/packs
+/public/packs-test
 /node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+>>>>>>> 2716b15e69cc56e90f22c630b4dc8ab6a67f7ff9
