@@ -1,46 +1,52 @@
 <% provide(:title, "プロフィール") %>
 
-<div class="container">
-  <h3 class="title-profile">プロフィール</h3>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="user-picture-box">
-        <%= gravatar_for @user, size: 120, class_name: "gravatar user-picture" %>
+  <div class="profile-container">
+    <div class="profile-content">
+      <div class="profile-section">
+        <div class="profile-image">
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, class: "profile-img" %>
+          <% else %>
+            <%= gravatar_for @user, size: 120, class_name: "gravatar user-picture" %>
+          <% end %>
+        </div>
+        <div class="profile-info">
+          <p><strong>full name</strong><br /><%= @user.full_name %></p>
+          <p><strong>mail</strong><br /><%= @user.email %></p>
+        </div>
       </div>
-    </div>
-    <div class="col-md-8">
-      <h4 class="show-user-name"><%= @user.username %></h4></ br>
-      <h4 class="show-user-name"><%= @user.full_name %></h4></ br>
-      <div>
-        <%= @user.profile %>
+      <div class="profile-section">
+        <div class="profile-details">
+          <p><strong>friend</strong><br /><%= render 'shared/stats' %></p>
+          <p><strong>profile</strong><br /><%= @user.profile %></p>
+
+          <% if current_user == @user %>
+            <div class="account-edit"><%= link_to "プロフィール編集", edit_user_registration_path %></div>
+          <% end %>
+          <%= render 'follow_form' if user_signed_in? %> 
+        </div>
       </div>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <% if current_user == @user %>
-        <div class="account-edit"><%= link_to "プロフィール編集", edit_user_registration_path %></div>
-      <% end %>
-      <%= render 'follow_form' if user_signed_in? %> 
     </div>
   </div>
 
-    <% if @user.child_posts.any? %>
-      <div class="conteiner">
-        <h3>Anniversary (<%= @user.child_posts.count %>)</h3>
-        <div class="row">
-          <% @child_posts.each do |child_post| %>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-              <%= link_to child_anniversary_child_post_path(child_post.child_anniversary, child_post) do %>
-                <div class="gallery-item">
-                  <div class="gallery-image">
-                    <%= image_tag(child_post.image_as_thumbnail) %>
-                  </div>
+<div class="container">
+  <% if @user.child_posts.any? %>
+    <div class="conteiner">
+      <h3>Anniversary (<%= @user.child_posts.count %>)</h3>
+      <div class="row">
+        <% @child_posts.each do |child_post| %>
+          <div class="col-sm-6 col-md-4 col-lg-4">
+            <%= link_to child_anniversary_child_post_path(child_post.child_anniversary, child_post) do %>
+              <div class="gallery-item">
+                <div class="gallery-image">
+                  <%= image_tag(child_post.image_as_thumbnail) %>
                 </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-      <%= will_paginate @child_posts %>
-    <% end %>
-  </div>
+    </div>
+    <%= will_paginate @child_posts %>
+  <% end %>
+</div>
