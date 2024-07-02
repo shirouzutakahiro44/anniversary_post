@@ -1,5 +1,13 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
+  <div class="profile-image">
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image, class: "profile-img", size: 120%>
+    <% else %>
+      <div class="default-profile-img">
+        <i class="fas fa-camera fa-3x"></i>
+      </div>
+    <% end %>
+  </div>
   <%= link_to user.username, user %>
   <% if (current_user.admin? && current_user != user) || (!current_user.admin? && current_user == user) %>
     |  <%= link_to "削除", user_registration_path, 

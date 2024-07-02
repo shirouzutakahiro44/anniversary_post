@@ -1,0 +1,94 @@
+.profile-container {
+  width: 60%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-section {
+  display: flex;
+  justify-content: space-between;
+  width: 58%;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 30%;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.profile-info,
+.profile-details {
+  width: 65%;
+}
+
+.profile-info p,
+.profile-details p {
+  margin: 10px 0;
+}
+
+.profile-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.edit-profile-btn:hover {
+  background-color: #0056b3;
+}
+
+.account-summary {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.account-summary h3 {
+  margin-bottom: 20px;
+}
+
+.account-summary p {
+  margin: 10px 0;
+}
+
+.default-profile-img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.default-profile-img {
+  background-color: #f0f0f0;
+  border: 2px solid #ddd; /* 必要に応じてボーダーを追加 */
+}

@@ -1,25 +1,13 @@
 <% provide(:title, '記念日一覧') %>
 <div class="container">
   <h2 class="module-title font-alt">記念日一覧</h2>
-  <ul class="users">
-    <p><%= link_to "記念日作成", new_child_anniversary_path, class: "btn btn-primary btn-lg btn-record" %></p>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="row post-masonry post-columns">
-              <% @child_anniversaries.each do |child_anniversary| %>
-                <div class="col-md-4 col-lg-4">
-                  <div class="card h-100 d-flex flex-column">
-                    <div class="card-body">
-                        <%= render partial: 'child_anniversary', locals: { child_anniversary: child_anniversary } %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
+  <p><%= link_to "記念日作成", new_child_anniversary_path, class: "btn btn-primary btn-lg btn-record" %></p>
+  <div class="row">
+    <% @child_anniversaries.each do |child_anniversary| %>
+      <div class="col-md-4 col-lg-4 mb-4">
+        <%= render partial: 'child_anniversary', locals: { child_anniversary: child_anniversary } %>
       </div>
-  </ul>
+    <% end %>
+  </div>
   <%= will_paginate @child_anniversaries %>
 </div>

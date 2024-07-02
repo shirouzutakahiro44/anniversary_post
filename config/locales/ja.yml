@@ -18,11 +18,12 @@ ja:
         full_name: フルネーム
         username: ユーザーネーム
         email: メールアドレス
+        profile_image: プロフィール画像
         Password: パスワード
         Password_confirmation: パスワード(確認)
         created_at: 登録日時
         updated_at: 更新日時
-      child_post: # 以下を追加
+      child_post:
         id: ID
         content: 投稿内容
         user_id: 作成者のID
