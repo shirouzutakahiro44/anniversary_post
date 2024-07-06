@@ -14,8 +14,9 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+          MYSQL_ROOT_PASSWORD: uZu1582072
+          MYSQL_DATABASE: anniversary_post_test
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout code
@@ -41,6 +42,13 @@ jobs:
 
       - name: Yarn install
         run: yarn install --check-files
+
+      - name: Wait for MySQL
+        run: |
+          until mysqladmin ping -h localhost --silent; do
+            echo "Waiting for MySQL to be ready..."
+            sleep 1
+          done
 
       - name: Database create and migrate
         run: |
