@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   def create
     @child_post = ChildPost.find(params[:child_post_id])
     @user = @child_post.user
-    @comment = @child_post.comments.build(user_id: current_user.id, content: params[:comment][:content])
+    @comment = @child_post.comments.build(user_id: current_user.id,
+                                          content: params[:comment][:content])
     if !@child_post.nil? && @comment.save
       flash[:success] = "コメントを追加しました！"
 
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
         @user.update_attribute(:notification, true)
       end
     else
-      flash[:danger] = "空のコメントは投稿できません。"+ @comment.errors.full_messages.join(", ")
+      flash[:danger] = "空のコメントは投稿できません。" + @comment.errors.full_messages.join(", ")
     end
     redirect_to request.referrer
   end
@@ -26,7 +27,7 @@ class CommentsController < ApplicationController
     @child_anniversary = @child_post.child_anniversary
     unless @comment.user_id == current_user.id
       flash[:danger] = "他人のコメントは編集できません"
-      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary, @child_post)
     end
   end
 
@@ -36,7 +37,7 @@ class CommentsController < ApplicationController
     @child_anniversary = @child_post.child_anniversary
     if @comment.update(comment_params)
       flash[:success] = "コメントが更新されました"
-      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary, @child_post)
     else
       redirect_to child_anniversary_child_posts_path
     end

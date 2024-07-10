@@ -4,7 +4,7 @@ namespace :scrape_event do
     require 'nokogiri'
     require 'httparty'
     require 'open-uri'
-    
+
     url = 'https://www.kinenbi.gr.jp/'
     html = HTTParty.get(url)
     doc = Nokogiri::HTML(html)

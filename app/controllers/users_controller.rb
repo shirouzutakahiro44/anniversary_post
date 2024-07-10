@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :destroy, :following, :followers]
-  
+
   def show
     @user = User.find(params[:id])
     @child_posts = @user.child_posts.desc_order.paginate(page: params[:page], per_page: 5)

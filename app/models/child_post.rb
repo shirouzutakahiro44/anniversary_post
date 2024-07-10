@@ -12,7 +12,7 @@ class ChildPost < ApplicationRecord
   has_many :notification, dependent: :destroy
 
   def image_content_type
-    if image.attached? && !image.content_type.in?(%w[image/jpeg image/png image/gif])
+    if image.attached? && !image.content_type.in?(%w(image/jpeg image/png image/gif))
       errors.add(:image, ':ファイル形式が、JPEG, PNG, GIF以外になってます。ファイル形式をご確認ください。')
     end
   end
@@ -24,15 +24,14 @@ class ChildPost < ApplicationRecord
   end
 
   def image_as_thumbnail
-    return 'default_image.png' unless image.content_type.in?(%w[image/jpeg image/png])
+    return 'default_image.png' unless image.content_type.in?(%w(image/jpeg image/png))
     image.variant(resize_to_limit: [800, 460]).processed
   end
 
   def feed_comment(child_post_id)
-    Comment.where("child_post_id = ?", child_post_id)
+    Comment.where(child_post_id: child_post_id)
   end
 
-  
   after_create :create_hashtags
   before_update :update_hashtags
 
@@ -44,17 +43,16 @@ class ChildPost < ApplicationRecord
 
   def update_hashtags
     # 更新前に関連するハッシュタグをクリアする
-    self.hashtags.clear
+    hashtags.clear
     extract_and_save_hashtags
   end
 
   def extract_and_save_hashtags
     # `hashbody`からハッシュタグを抽出する正規表現を使用
-    hashtags = self.hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/).map(&:downcase).uniq
+    hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/).map(&:downcase).uniq
     hashtags.each do |hashtag|
       tag = Hashtag.find_or_create_by(hashname: hashtag.delete('#'))
       self.hashtags << tag
     end
   end
-
 end
