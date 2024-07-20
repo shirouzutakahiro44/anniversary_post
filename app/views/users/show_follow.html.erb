@@ -2,7 +2,15 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= gravatar_for @user %>
+    <div class="profile-image">
+      <% if @user.profile_image.attached? %>
+        <%= image_tag @user.profile_image, class: "profile-img", size: 120%>
+      <% else %>
+        <div class="default-profile-img">
+          <i class="fas fa-camera fa-3x"></i>
+        </div>
+      <% end %>
+    </div>
       <h1><%= @user.name %></h1>
       <span><%= link_to "プロフィール", @user %></span>
       <span><b>こども記念日投稿</b><%= @user.child_posts.count %><b>件</b></span>
