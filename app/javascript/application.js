@@ -1,8 +1,8 @@
+//= require rails-ujs
 //= require jquery3
 //= require popper
 //= require bootstrap.min
 //= require toastr_rails
-//= require rails-ujs
 //= require main
 //= require plugins
 //= require wow/dist/wow

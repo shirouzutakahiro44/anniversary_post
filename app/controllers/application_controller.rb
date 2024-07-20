@@ -17,10 +17,14 @@ class ApplicationController < ActionController::Base
   private
 
   def set_active_storage_host
-    ActiveStorage::Current.url_options = { 
-      protocol: request.protocol, 
-      host: request.host, 
-      port: request.port 
+    ActiveStorage::Current.url_options = {
+      protocol: request.protocol,
+      host: request.host,
+      port: request.port,
     }
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 end

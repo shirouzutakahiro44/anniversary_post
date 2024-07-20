@@ -5,7 +5,7 @@ module ChildPostsHelper
 
     # hashbodyが存在する場合、ハッシュタグをリンクに変換
     hashbody.gsub(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/) do |word|
-      link_to word, "/child_post/hashtag/#{word.delete("#")}", data: {"turbolinks" => false}
+      link_to word, "/child_post/hashtag/#{word.delete("#")}", data: { "turbolinks" => false }
     end.html_safe
   end
 end

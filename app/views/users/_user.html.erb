@@ -1,4 +1,4 @@
-<li>
+<li class="user-item" id="user-item-<%= user.id %>">
   <div class="profile-image">
     <% if user.profile_image.attached? %>
       <%= image_tag user.profile_image, class: "profile-img", size: 120%>
@@ -8,10 +8,19 @@
       </div>
     <% end %>
   </div>
-  <%= link_to user.username, user %>
-  <% if (current_user.admin? && current_user != user) || (!current_user.admin? && current_user == user) %>
-    |  <%= link_to "削除", user_registration_path, 
-                                      data: { confirm: "本当にこのアカウントを削除してもよろしいですか？" }, 
-                                      method: :delete %>
-  <% end %>
+  <div class="user-details">
+    <div class="user-info">
+      <%= link_to user.username, user, class: "username" %>
+      <p><strong>フルネーム:</strong> <%= user.full_name %></p>
+      <p><strong>趣味:</strong> <%= user.profile %></p>
+    </div>
+    <div class="user-actions">
+      <% if (current_user.admin? && current_user != user) || (!current_user.admin? && current_user == user) %>
+        |  <%= link_to "削除", user_registration_path, 
+                                        data: { confirm: "本当にこのアカウントを削除してもよろしいですか？" }, 
+                                        method: :delete %>
+      <% end %>
+      <%= render 'follow_form', user: user %>
+    </div>
+  </div>
 </li>

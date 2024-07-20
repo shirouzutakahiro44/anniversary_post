@@ -259,3 +259,77 @@ li.new_notification > a > span {
 .notification-message {
   font-size: 16px;
 }
+
+.follow-form {
+  display: inline;
+}
+
+.btn-outline-secondary {
+  border-color: #007bff;
+  color: #007bff;
+  background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-following {
+  border-color: black;
+  color: black;
+  background-color: transparent;
+}
+
+.btn-following:hover {
+  background-color: black;
+  color: white;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.profile-image {
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.user-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+
+.user-details p {
+  margin: 0;
+}
+
+.follow-form {
+  margin-left: auto;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+.btn {
+  margin-left: 10px;
+}
+

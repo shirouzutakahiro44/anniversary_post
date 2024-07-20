@@ -20,7 +20,7 @@ class ChildPostsController < ApplicationController
     @child_post = ChildPost.find(params[:id])
     unless @child_post.user == current_user
       flash[:danger] = "他人の投稿は編集できません"
-      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary,@child_post)
+      redirect_to child_anniversary_child_post_path(@child_post.child_anniversary, @child_post)
     end
   end
 
@@ -53,7 +53,7 @@ class ChildPostsController < ApplicationController
     if current_user.admin? || current_user == @child_post.user
       @child_post.destroy
       flash[:success] = "記念日アニバを削除しました"
-      redirect_to  root_url
+      redirect_to root_url
     else
       flash[:danger] = "他人の記念日アニバは削除できません"
       redirect_to root_url
@@ -64,16 +64,18 @@ class ChildPostsController < ApplicationController
     @user = current_user
     if params[:name].present?
       @hashtag = Hashtag.find_by(hashname: params[:name])
-      @child_posts = @hashtag.child_posts.paginate(page: params[:page], per_page: 20).order(created_at: :desc)
-      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.child_posts.count}
+      @child_posts = @hashtag.child_posts.paginate(page: params[:page],
+                                                   per_page: 20).order(created_at: :desc)
+      @hashtags = Hashtag.all.to_a.group_by { |hashtag| hashtag.child_posts.count }
     else
-      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.child_posts.count}
+      @hashtags = Hashtag.all.to_a.group_by { |hashtag| hashtag.child_posts.count }
     end
   end
 
   private
 
   def child_post_params
-    params.require(:child_post).permit(:content, :hashbody, :child_anniversary_id, :image, images: [], hashtag_ids: [])
+    params.require(:child_post).permit(:content, :hashbody, :child_anniversary_id, :image,
+images: [], hashtag_ids: [])
   end
 end

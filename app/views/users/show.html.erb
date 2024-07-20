@@ -1,33 +1,37 @@
 <% provide(:title, "プロフィール") %>
 
-  <div class="profile-container">
-    <div class="profile-content">
-      <div class="profile-section">
-        <div class="profile-image">
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image, class: "profile-img" %>
-          <% else %>
-            <%= gravatar_for @user, size: 120, class_name: "gravatar user-picture" %>
-          <% end %>
-        </div>
-        <div class="profile-info">
-          <p><strong>full name</strong><br /><%= @user.full_name %></p>
-          <p><strong>mail</strong><br /><%= @user.email %></p>
-        </div>
+<div class="profile-container">
+  <div class="profile-content">
+    <div class="profile-section">
+      <div class="profile-image">
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image, class: "profile-img" %>
+        <% else %>
+          <%= gravatar_for @user, size: 120, class_name: "gravatar user-picture" %>
+        <% end %>
       </div>
-      <div class="profile-section">
-        <div class="profile-details">
-          <p><strong>friend</strong><br /><%= render 'shared/stats' %></p>
-          <p><strong>profile</strong><br /><%= @user.profile %></p>
+      <div class="profile-info">
+        <p><strong>full name</strong><br /><%= @user.full_name %></p>
+        <p><strong>mail</strong><br /><%= @user.email %></p>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-details">
+        <p><strong>friend</strong><br /><%= render 'shared/stats' %></p>
+        <p><strong>profile</strong><br /><%= @user.profile %></p>
 
-          <% if current_user == @user %>
-            <div class="account-edit"><%= link_to "プロフィール編集", edit_user_registration_path %></div>
-          <% end %>
-          <%= render 'follow_form' if user_signed_in? %> 
-        </div>
+        <% if current_user == @user %>
+          <div class="account-edit"><%= link_to "プロフィール編集", edit_user_registration_path %></div>
+        <% end %>
+        <% if user_signed_in? %>
+          <div id="user-item-<%= @user.id %>">
+            <%= render 'follow_form', user: @user %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 
 <div class="container">
   <% if @user.child_posts.any? %>
