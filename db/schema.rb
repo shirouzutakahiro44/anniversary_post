@@ -37,7 +37,8 @@ name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_variant_records", charset: "utf8mb4",
-                                                 collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+                                                 collation: "utf8mb4_0900_ai_ci",
+                                                 force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"],
