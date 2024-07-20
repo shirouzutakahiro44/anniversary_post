@@ -43,10 +43,10 @@ class ChildAnniversariesController < ApplicationController
     if current_user.admin? || current_user?(@child_anniversary.user)
       @child_anniversary.destroy
       flash[:success] = "記念日を削除しました"
-      redirect_to root_url
+      redirect_to child_anniversaries_path
     else
       flash[:danger] = "他人の記念日は削除できません"
-      redirect_to root_url
+      redirect_to child_anniversaries_path
     end
   end
 
